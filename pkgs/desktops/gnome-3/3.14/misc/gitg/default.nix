@@ -9,11 +9,11 @@ let
   majorVersion = "3.14";
 in
 stdenv.mkDerivation rec {
-  name = "gitg-${majorVersion}.0";
+  name = "gitg-${majorVersion}.1";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gitg/${majorVersion}/${name}.tar.xz";
-    sha256 = "8e45a7198896eedd829a20ff8de437a08869d30005638114ca87abd42ffea11b";
+    sha256 = "8e485b35d918fddc255c3bf5d5c139d0a8b684bd922a8913153b1b7781357057";
   };
 
   preCheck = ''

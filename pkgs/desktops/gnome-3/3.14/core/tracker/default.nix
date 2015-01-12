@@ -11,11 +11,11 @@ let
   majorVersion = "1.2";
 in
 stdenv.mkDerivation rec {
-  name = "tracker-${majorVersion}.3";
+  name = "tracker-${majorVersion}.5";
 
   src = fetchurl {
     url = "mirror://gnome/sources/tracker/${majorVersion}/${name}.tar.xz";
-    sha256 = "0ipnfs5rkp5lww3xahlhijg79sgdc65yg8mzc5gfwrvv0ds6w6km";
+    sha256 = "1e614bc33f93d5820f3c90510e11210bf34d02dba6ccbd3dc30097758a6d31aa";
   };
 
   propagatedUserEnvPkgs = [ gnome3.gnome_themes_standard ];

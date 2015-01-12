@@ -3,14 +3,14 @@
 
 stdenv.mkDerivation rec {
   versionMajor = "0.38";
-  versionMinor = "0";
+  versionMinor = "3";
   moduleName   = "vte";
 
   name = "${moduleName}-${versionMajor}.${versionMinor}";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${moduleName}/${versionMajor}/${name}.tar.xz";
-    sha256 = "1llg2xnjpn630vd86ci8csbjjacj3ia6syck2bsq4kinr66z5zsw";
+    sha256 = "3f3ae063207ceea9ca2abd1cf9c9f8bd2b66ca82156609f31f3554288c0c2bf4";
   };
 
   patches = with stdenv.lib; optional selectTextPatch ./expose_select_text.0.38.0.patch;

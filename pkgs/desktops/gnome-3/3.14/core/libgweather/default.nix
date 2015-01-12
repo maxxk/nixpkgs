@@ -2,11 +2,11 @@
 , pango, gdk_pixbuf, atk, tzdata, gnome3 }:
 
 stdenv.mkDerivation rec {
-  name = "libgweather-${gnome3.version}.1";
+  name = "libgweather-${gnome3.version}.2";
 
   src = fetchurl {
     url = "mirror://gnome/sources/libgweather/${gnome3.version}/${name}.tar.xz";
-    sha256 = "4db10404ac91bc1f85ae977bdaa98413836429c3de6244dc68567c402afed800";
+    sha256 = "aa0d03132fc6c446cf549df1d91e319e1abcc676f1d9f8bc1dc01f033dcff493";
   };
 
   makeFlags = "INTROSPECTION_GIRDIR=$(out)/share/gir-1.0/ INTROSPECTION_TYPELIBDIR=$(out)/lib/girepository-1.0";

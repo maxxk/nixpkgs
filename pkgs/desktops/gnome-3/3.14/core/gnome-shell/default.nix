@@ -8,11 +8,11 @@
 # http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/gnome-base/gnome-shell/gnome-shell-3.10.2.1.ebuild?revision=1.3&view=markup
 
 stdenv.mkDerivation rec {
-  name = "gnome-shell-${gnome3.version}.2";
+  name = "gnome-shell-${gnome3.version}.3";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${gnome3.version}/${name}.tar.xz";
-    sha256 = "4166656cac98da9b2fbd5c315ca1c4f34e06f1f5423ae058831ceb51ea5deda1";
+    sha256 = "fb44484efb94af4d90189127136a82b2cc1afed93e24834165ae550b58b539d6";
   };
 
   buildInputs = with gnome3;

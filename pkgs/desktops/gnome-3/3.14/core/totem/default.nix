@@ -5,11 +5,11 @@
 , gnome3, librsvg, gdk_pixbuf, file }:
 
 stdenv.mkDerivation rec {
-  name = "totem-${gnome3.version}.0";
+  name = "totem-${gnome3.version}.1";
 
   src = fetchurl {
     url = "mirror://gnome/sources/totem/${gnome3.version}/${name}.tar.xz";
-    sha256 = "a57f78126af431b71e44aa0548e672bf884aef51ec23847f82b07a6849ac635e";
+    sha256 = "288150837fd2693a4b672210a1ffdd178d3e542df954af247dc04c666bf97536";
   };
 
   doCheck = true;

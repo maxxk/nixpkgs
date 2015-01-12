@@ -4,11 +4,11 @@
 , gnome3, file }:
 
 stdenv.mkDerivation rec {
-  name = "gnome-shell-extensions-${gnome3.version}.2";
+  name = "gnome-shell-extensions-${gnome3.version}.3";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell-extensions/${gnome3.version}/${name}.tar.xz";
-    sha256 = "bf0bf033d9ddd62ff005f55c2917b49df0719132df9c081e8d7e27c571819135";
+    sha256 = "183477b54b0aff78ead7bbd2aa0ab813544f65d04546d81ace858662a8810a2e";
   };
 
   doCheck = true;

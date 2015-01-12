@@ -6,14 +6,14 @@
 
 let
   ver_maj = "1.22";
-  version = "${ver_maj}.2";
+  version = "${ver_maj}.3";
 in
 stdenv.mkDerivation rec {
   name = "gvfs-${version}";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gvfs/${ver_maj}/${name}.tar.xz";
-    sha256 = "8d08c4927b6c20d990498c23280017e7033b31a386f09b4c3ce5bedd20316250";
+    sha256 = "c778342e09a84d8c69b1b7ce7f943f6f2444a995bb0c0754ef1746afa8935182";
   };
 
   nativeBuildInputs = [ pkgconfig intltool libtool ];

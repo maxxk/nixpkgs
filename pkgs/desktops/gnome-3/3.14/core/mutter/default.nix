@@ -4,11 +4,11 @@
 
 
 stdenv.mkDerivation rec {
-  name = "mutter-${gnome3.version}.2";
+  name = "mutter-${gnome3.version}.3";
 
   src = fetchurl {
     url = "mirror://gnome/sources/mutter/${gnome3.version}/${name}.tar.xz";
-    sha256 = "aa434c1bfdaf4159ecc2bab2911f7e7b21d64779494ffa5aa4f065b06492373f";
+    sha256 = "0b23a2d31980d9de8e92ef940e6f63e3ac0f6446e2afc69ecbc80163f6af3a23";
   };
 
   # fatal error: gio/gunixfdlist.h: No such file or directory

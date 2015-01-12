@@ -8,11 +8,11 @@ let
   majorVersion = "0.8";
 in
 stdenv.mkDerivation rec {
-  name = "geary-${majorVersion}.2";
+  name = "geary-${majorVersion}.3";
 
   src = fetchurl {
     url = "mirror://gnome/sources/geary/${majorVersion}/${name}.tar.xz";
-    sha256 = "3cfa626168935acf49c9415fad54c7849f17fd833026cfd3c224ba0fb892d641";
+    sha256 = "87db09b1e4fb8e18c8341561a100003a3d05f954dc6fadc076b658c6699c784e";
   };
 
   propagatedUserEnvPkgs = [ gnome3.gnome_themes_standard ];

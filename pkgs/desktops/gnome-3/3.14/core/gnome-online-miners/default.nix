@@ -2,11 +2,11 @@
 , libsoup, json_glib, gmp, openssl, makeWrapper }:
 
 stdenv.mkDerivation rec {
-  name = "gnome-online-miners-${gnome3.version}.0";
+  name = "gnome-online-miners-${gnome3.version}.1";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-online-miners/${gnome3.version}/${name}.tar.xz";
-    sha256 = "f998d84120a8e1d8680a474803bbe5a8dc7dbda51b52309fa0020691156ee29e";
+    sha256 = "6c6b48be2f89400ca16560c6fff67519229034ea78be867c9fbcb86c1d7cf784";
   };
 
   doCheck = true;

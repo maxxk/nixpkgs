@@ -5,7 +5,7 @@ let
 in
 stdenv.mkDerivation rec {
   name = "gexiv2-${version}";
-  version = "${majorVersion}.0";
+  version = "${majorVersion}.2";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gexiv2/${majorVersion}/${name}.tar.xz";
@@ -26,3 +26,4 @@ stdenv.mkDerivation rec {
     maintainers = [ maintainers.lethalman ];
   };
 }
+

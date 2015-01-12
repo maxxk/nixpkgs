@@ -4,11 +4,11 @@
 , gnome3, librsvg, gdk_pixbuf, file, libcanberra_gtk3 }:
 
 stdenv.mkDerivation rec {
-  name = "gnome-user-share-${gnome3.version}.0";
+  name = "gnome-user-share-${gnome3.version}.2";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-user-share/${gnome3.version}/${name}.tar.xz";
-    sha256 = "cd69e7d2a0131a6d542db4365b0f14e88fffb82fd2ce7d1f7d4a5190ee6efdb8";
+    sha256 = "6b05b3ef31af3bb39c903f94a0d163c0a9c4aa5266ae98e2281e0613f2972ee9";
   };
 
   doCheck = true;

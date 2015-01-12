@@ -4,7 +4,7 @@
 , gnome3, librsvg, gdk_pixbuf, file }:
 
 stdenv.mkDerivation rec {
-  name = "gnome-dictionary-${gnome3.version}.0";
+  name = "gnome-dictionary-${gnome3.version}.2";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-dictionary/${gnome3.version}/${name}.tar.xz";

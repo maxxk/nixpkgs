@@ -1,11 +1,11 @@
 { stdenv, fetchurl, pkgconfig, file, intltool, gmime, libxml2, libsoup }:
 
 stdenv.mkDerivation rec {
-  name = "totem-pl-parser-3.10.2";
+  name = "totem-pl-parser-3.10.3";
 
   src = fetchurl {
     url = "mirror://gnome/sources/totem-pl-parser/3.10/${name}.tar.xz";
-    sha256 = "38be09bddc46ddecd2b5ed7c82144ef52aafe879a5ec3d8b192b4b64ba995469";
+    sha256 = "14512c76c7f375d8bb9e9a220afbac20be2d2eb82abee9a8986d264079a0c72f";
   };
 
   buildInputs = [ pkgconfig file intltool gmime libxml2 libsoup ];
