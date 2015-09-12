@@ -2009,7 +2009,7 @@ let
   ninka = callPackage ../development/tools/misc/ninka { };
 
   nodejs-0_12 = callPackage ../development/web/nodejs {
-    libuv = libuvVersions.v1_6_1;
+    libtool = darwin.cctools;
   };
 
   nodejs-0_10 = callPackage ../development/web/nodejs/v0_10.nix {
@@ -2030,7 +2030,7 @@ let
   else
     nodePackages_0_12;
 
-  iojs = callPackage ../development/web/iojs { libuv = libuvVersions.v1_6_1; };
+  iojs = callPackage ../development/web/iojs { };
 
   iojsPackages = callPackage ./node-packages.nix { self = iojsPackages; nodejs = iojs; };
 
@@ -7365,7 +7365,7 @@ let
     inherit (darwin.apple_sdk.frameworks) ApplicationServices CoreServices;
   });
 
-  libuv = libuvVersions.v1_6_1;
+  libuv = libuvVersions.v1_7_5;
 
   libv4l = lowPrio (v4l_utils.override {
     alsaLib = null;
@@ -12265,7 +12265,7 @@ let
 
   pencil = callPackage ../applications/graphics/pencil { };
 
-  perseus = callPackage ../applications/science/math/perseus {};  
+  perseus = callPackage ../applications/science/math/perseus {};
 
   petrifoo = callPackage ../applications/audio/petrifoo {
     inherit (gnome) libgnomecanvas;
@@ -15102,4 +15102,3 @@ tweakAlias = _n: alias: with lib;
   else alias;
 
 in lib.mapAttrs tweakAlias aliases // self; in pkgs
-
