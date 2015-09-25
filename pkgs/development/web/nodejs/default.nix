@@ -1,50 +1,38 @@
-{ stdenv, fetchurl, openssl, python, zlib, libuv, v8, utillinux, http-parser
-, pkgconfig, runCommand, which, libtool
-}:
-
-# nodejs 0.12 can't be built on armv5tel. Armv6 with FPU, minimum I think.
-# Related post: http://zo0ok.com/techfindings/archives/1820
-assert stdenv.system != "armv5tel-linux";
+{ stdenv, fetchurl, fetchpatch, python, utillinux,
+  openssl_1_0_2, http-parser, zlib, libuv }:
 
 let
-  version = "0.12.7";
+  # Watch updated packages: https://github.com/nodejs/node/issues/2798
+  version = "4.1.1";
+  inherit (stdenv.lib) optional optionals maintainers licenses platforms;
 
-  deps = {
-    inherit openssl zlib libuv;
-
-    # disabled system v8 because v8 3.14 no longer receives security fixes
-    # we fall back to nodejs' internal v8 copy which receives backports for now
-    # inherit v8
-  } // (stdenv.lib.optionalAttrs (!stdenv.isDarwin) {
-    inherit http-parser;
-  });
-
-  sharedConfigureFlags = name: [
-    "--shared-${name}"
-    "--shared-${name}-includes=${builtins.getAttr name deps}/include"
-    "--shared-${name}-libpath=${builtins.getAttr name deps}/lib"
-  ];
-
-  inherit (stdenv.lib) concatMap optional optionals maintainers licenses platforms;
 in stdenv.mkDerivation {
   name = "nodejs-${version}";
 
   src = fetchurl {
-    url = "http://nodejs.org/dist/v${version}/node-v${version}.tar.gz";
-    sha256 = "17gk29zbw58l0sjjfw86acp39pkiblnq0gsq1jdrd70w0pgn8gdj";
+    url = "https://nodejs.org/dist/v${version}/node-v${version}.tar.xz";
+    sha256 = "f7ca9ceb0b7cc49b12f28a652c908a1f0ffbf34cec73ad0805fe717b14996bb9";
   };
 
-  configureFlags = concatMap sharedConfigureFlags (builtins.attrNames deps) ++ [ "--without-dtrace" ];
-
   prePatch = ''
-    patchShebangs .
+    sed -e 's|^#!/usr/bin/env python$|#!${python}/bin/python|g' -i configure
   '';
 
-  patches = stdenv.lib.optional stdenv.isDarwin ./no-xcode.patch;
+  # link error for -lgcc_s.10.5
+  patchFlags = "-p0";
+  patches = optional stdenv.isDarwin (fetchpatch {
+    url = "https://svn.macports.org/repository/macports/trunk/dports/devel/iojs/files/patch-common.gypi.diff";
+    sha256 = "0ibjwf01d95fbnh8jp76v9wll47p397m5igaa2vhcssh0r18mp3k";
+    });
 
-  buildInputs = [ python which ]
-    ++ (optional stdenv.isLinux utillinux)
-    ++ optionals stdenv.isDarwin [ pkgconfig openssl libtool ];
+  configureFlags = [ "--shared-openssl" "--shared-http-parser" "--shared-zlib" "--shared-libuv" "--without-dtrace" ];
+
+  # iojs and nodejs v4+ have --enable-static but no --disable-static.
+  # Automatically adding --disable-static causes configure to fail, so don't add --disable-static.
+  dontDisableStatic = true;
+
+  buildInputs = [ python openssl_1_0_2 http-parser zlib libuv ]
+    ++ (optional stdenv.isLinux utillinux);
   setupHook = ./setup-hook.sh;
 
   enableParallelBuilding = true;

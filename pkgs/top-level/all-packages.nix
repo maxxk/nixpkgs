@@ -2008,7 +2008,9 @@ let
 
   ninka = callPackage ../development/tools/misc/ninka { };
 
-  nodejs-0_12 = callPackage ../development/web/nodejs {
+  nodejs-4 = callPackage ../development/web/nodejs {};
+
+  nodejs-0_12 = callPackage ../development/web/nodejs/v0_12.nix {
     libtool = darwin.cctools;
   };
 
@@ -2019,8 +2021,9 @@ let
   nodejs = if stdenv.system == "armv5tel-linux" then
     nodejs-0_10
   else
-    nodejs-0_12;
+    nodejs-4;
 
+  nodePackages_4 = callPackage ./node-packages.nix { self = nodePackages_4; nodejs = nodejs-4; };
   nodePackages_0_12 = callPackage ./node-packages.nix { self = nodePackages_0_12; nodejs = nodejs-0_12; };
 
   nodePackages_0_10 = callPackage ./node-packages.nix { self = nodePackages_0_10; nodejs = nodejs-0_10; };
@@ -2028,7 +2031,7 @@ let
   nodePackages = if stdenv.system == "armv5tel-linux" then
     nodePackages_0_10
   else
-    nodePackages_0_12;
+    nodePackages_4;
 
   iojs = callPackage ../development/web/iojs { };
 
